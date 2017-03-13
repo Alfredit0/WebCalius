@@ -1,2 +1,4 @@
 # WebCalius
-Proyecto Web de la aplicación Calius.
+#Equipo de desarrollo Web:
+# - José Ángel León.
+# - Maribel Ramírez.
