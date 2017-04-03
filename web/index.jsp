@@ -29,8 +29,10 @@
         <hr>
         <h2 style="text-align: center">Envio de Notificación</h2>
         <div class="form">
+            <label>Asunto:</label>
+            <input type="text" name="asunto" id="asunto" placeholder="Asunto de la notificación"/>            
             <label>Mensaje:</label>
-            <input type="text" name="mensaje" id="mensaje" placeholder="Mensaje a Enviar">
+            <textarea rows="6" name="mensaje" id="mensaje" placeholder="Mensaje a Enviar"></textarea>
             <button onclick="sendNotification()" class="btn btn-primary">Enviar</button>
             <p id="statusEnvio" class="center-block"></p>
         </div>        
@@ -38,20 +40,23 @@
        
 		function sendNotification() {
                     $('#statusEnvio').html("<img style='width:80px; height: 80px, margin-top:15px' src='Style/images/loading.gif' />");
+                    var asunto = document.getElementById("mensaje").value;
                     var mensaje = document.getElementById("mensaje").value;
                     var settings = {                                            
-                      "url": "http://localhost:9090/unsis/sendnotifications",
+                      "url": "https://calius.herokuapp.com/sendnotifications",
                       "method": "POST",
                       "headers": {
                         "accept": "application/json",
                         "content-type": "application/json"                                          
                       },                      
-                      "data": "{\r\n\"passcon\" : \"KEY\",\r\n\"asunto\" : \"Informe Becas 2\",\r\n\"tipo\" : \"alumno\",\r\n\"destintario\" : \"2013060024\",\r\n\"mensaje\" : \" "+mensaje+" \",\r\n\"remitente\" : \"iduser024\"\r\n}\r\n"
-                    }
+                      "data": "{\r\n\"passcon\" : \"KEY\",\r\n\"asunto\" : \""+asunto+"\",\r\n\"tipo\" : \"alumno\",\r\n\"destintario\" : \"2013060024\",\r\n\"mensaje\" : \" "+mensaje+" \",\r\n\"remitente\" : \"iduser024\"\r\n}\r\n"
+                    };
 
                     $.ajax(settings).done(function (response) {
                       console.log(response);
                       $('#statusEnvio').html("<h3 style='text-align: center' class='text-success'>El Mensaje se ha enviado Correctamente <span class='glyphicon glyphicon-ok'></span></h3>");
+                      document.getElementById("mensaje").value="";
+                      document.getElementById("mensaje").value="";
                     });
     
 
