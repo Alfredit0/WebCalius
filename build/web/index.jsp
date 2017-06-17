@@ -54,7 +54,7 @@
 
                     $.ajax(settings).done(function (response) {
                       console.log(response);
-                      $('#statusEnvio').html("<h3 style='text-align: center' class='text-success'>El Mensaje se ha enviado Correctamente <span class='glyphicon glyphicon-ok'></span></h3>");
+                      $('#statusEnvio').html("<h3 style='text-align: center' class='text-success'>El Mensaje se ha enviado Correctamente: total enviados: "+response.totalenviados+" <span class='glyphicon glyphicon-ok'></span></h3>");
                       document.getElementById("mensaje").value="";
                       document.getElementById("mensaje").value="";
                     });
